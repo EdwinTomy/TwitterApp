@@ -51,6 +51,7 @@ public class TwitterClient extends OAuthBaseClient {
 		params.put("count", 25);
 		params.put("since_id", 1);
 		client.get(apiUrl, params, handler);
+		client.post(apiUrl, String.valueOf(params), handler);
 	}
 
 	/* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint
