@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +73,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvScreenName;
         TextView userTag;
         TextView timeStamp;
+        ImageView media;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -80,6 +82,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             userTag = itemView.findViewById(R.id.userTag);
             timeStamp = itemView.findViewById(R.id.timeStamp);
+            media = itemView.findViewById(R.id.media);
         }
 
         public void bind(Tweet tweet){
@@ -88,6 +91,12 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             userTag.setText(tweet.user.name);
             timeStamp.setText(getRelativeTimeAgo(tweet.createdAt));
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            Log.i("AdapterIMG", "bind: image url: " + tweet.imgurl);
+            if(!tweet.imgurl.isEmpty()) {
+                Glide.with(context).load(tweet.imgurl).into(media);
+            } else {
+                media.setVisibility(View.GONE);
+            }
         }
 
         //Formatting time passed

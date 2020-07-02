@@ -1,5 +1,7 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,6 +16,7 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+    public String imgurl;
 
     //Empty Constructor for Parser
     public Tweet() {}
@@ -23,7 +26,14 @@ public class Tweet {
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
-
+        try {
+            Log.i("TweetAdapter", "fromJson: " + jsonObject.getJSONObject("entities").toString());
+            tweet.imgurl = jsonObject.getJSONObject("entities").getJSONArray("media").getJSONObject(0).getString("media_url_https");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("Entities", "no media array" + jsonObject.getJSONObject("entities").toString());
+            tweet.imgurl = "";
+        }
 
         return tweet;
     }
