@@ -31,6 +31,9 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         this.tweets = tweets;
     }
 
+    public TweetsAdapter(ExampleUnitTest exampleUnitTest) {
+    }
+
     //For each row, inflate  layout
     @NonNull
     @Override
@@ -53,19 +56,19 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         return tweets.size();
     }
 
-    // Clean all elements of the recycler
+    //Clean all elements of the recycler
     public void clear() {
         tweets.clear();
         notifyDataSetChanged();
     }
 
-    // Add a list of items
+    //Add a list of items
     public void addAll(List<Tweet> list) {
         tweets.addAll(list);
         notifyDataSetChanged();
     }
 
-    //Define a viewholer
+    //Define a Viewholer class
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivProfileImage;
@@ -85,6 +88,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             media = itemView.findViewById(R.id.media);
         }
 
+        //Bind the elements from item_tweet to the Viewholder
         public void bind(Tweet tweet){
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);

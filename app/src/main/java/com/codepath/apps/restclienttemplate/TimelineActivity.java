@@ -37,6 +37,7 @@ public class TimelineActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeContainer;
     EndlessRecyclerViewScrollListener scrollListener;
 
+    //Creating the timeline with new tweets
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,19 +47,7 @@ public class TimelineActivity extends AppCompatActivity {
 
         //For refreshing the timeline
         swipeContainer = findViewById(R.id.swipeContainer);
-        swipeContainer.setColorSchemeColors(
-                getResources().getColor(android.R.color.holo_blue_bright),
-                getResources().getColor(android.R.color.holo_green_light),
-                getResources().getColor(android.R.color.holo_orange_light),
-                getResources().getColor(android.R.color.holo_red_light)
-        );
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Log.i(TAG, "refreshing");
-                populateHomeTimeline();
-            }
-        });
+        refreshTimeline(swipeContainer);
 
         //Find the recyclerview
         rvTweets = findViewById(R.id.rvTweets);
@@ -110,6 +99,23 @@ public class TimelineActivity extends AppCompatActivity {
         }, tweets.get(tweets.size() - 1).id);
     }
 
+    //Refresh timeline helper method
+    public void refreshTimeline(SwipeRefreshLayout swipeContainer){
+        swipeContainer.setColorSchemeColors(
+                getResources().getColor(android.R.color.holo_blue_bright),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_red_light)
+        );
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.i(TAG, "refreshing");
+                populateHomeTimeline();
+            }
+        });
+    }
+
     // Inflate the menu; this adds items to the action bar if it is present.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -144,6 +150,7 @@ public class TimelineActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    //Filling the timeline with tweets
     private void populateHomeTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
