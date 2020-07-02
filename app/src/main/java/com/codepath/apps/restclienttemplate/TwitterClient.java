@@ -21,6 +21,8 @@ import com.github.scribejava.core.builder.api.BaseApi;
  * NOTE: You may want to rename this object based on the service i.e TwitterClient or FlickrClient
  * 
  */
+
+//Class responsible for communicating with the REST API
 public class TwitterClient extends OAuthBaseClient {
 	public static final BaseApi REST_API_INSTANCE = TwitterApi.instance();
 	public static final String REST_URL = "https://api.twitter.com/1.1";
