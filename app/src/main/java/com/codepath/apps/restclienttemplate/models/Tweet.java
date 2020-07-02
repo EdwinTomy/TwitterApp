@@ -17,6 +17,7 @@ public class Tweet {
     public String createdAt;
     public User user;
     public String imgurl;
+    public long id;
 
     //Empty Constructor for Parser
     public Tweet() {}
@@ -25,6 +26,7 @@ public class Tweet {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
+        tweet.id = jsonObject.getLong("id");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         try {
             Log.i("TweetAdapter", "fromJson: " + jsonObject.getJSONObject("entities").toString());
