@@ -12,9 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/userTag"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        android:text="userName123" />
+        android:text="userName123"
+        android:textColor="@color/twitter_blue" />
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -34,17 +35,8 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        android:text="Tweet tweet tweet" /><![CDATA[
+        android:text="Tweet tweet tweet" />
 
-    android:layout_marginTop="5dp"
-    android:layout_toEndOf="@+id/ivProfileImage"
-    android:text="user" />
-
-
-
-
-
-    ]]>
 
     <TextView
         android:id="@+id/userTag"
@@ -54,7 +46,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@id/ivProfileImage"
-        android:text="user" />
+        android:text="user"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/timeStamp"
@@ -70,7 +64,7 @@
 
     <ImageView
         android:id="@+id/media"
-        android:layout_width="120dp"
+        android:layout_width="240dp"
         android:layout_height="120dp"
         android:layout_below="@+id/tvBody"
         android:layout_marginStart="5dp"

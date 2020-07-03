@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.text.ParseException;
@@ -94,10 +95,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName.setText(tweet.user.screenName);
             userTag.setText(tweet.user.name);
             timeStamp.setText(getRelativeTimeAgo(tweet.createdAt));
-            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            Glide.with(context).load(tweet.user.profileImageUrl).transform(new RoundedCorners(30)).into(ivProfileImage);
             Log.i("AdapterIMG", "bind: image url: " + tweet.imgurl);
             if(!tweet.imgurl.isEmpty()) {
-                Glide.with(context).load(tweet.imgurl).into(media);
+                Glide.with(context).load(tweet.imgurl).transform(new RoundedCorners(30)).into(media);
             } else {
                 media.setVisibility(View.GONE);
             }
